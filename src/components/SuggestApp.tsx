@@ -4,9 +4,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Lightbulb, Send, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SuggestApp = () => {
+  useEffect(() => {
+    import('aos').then(AOS => {
+      AOS.default.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+    });
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +25,20 @@ const SuggestApp = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.name.trim() || !formData.email.trim() || !formData.appIdea.trim()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
     const emailBody = `Name: ${formData.name}%0AEmail: ${formData.email}%0AIndustry: ${formData.industry}%0A%0AApp Idea:%0A${encodeURIComponent(formData.appIdea)}`;
     window.location.href = `mailto:Support@insight-flowai.com?subject=New App Suggestion from ${formData.name}&body=${emailBody}`;
   };
@@ -28,7 +51,7 @@ const SuggestApp = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/30" id="suggest-app">
+    <section className="py-20 bg-muted/30" id="suggest-app" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
@@ -40,7 +63,7 @@ const SuggestApp = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
           <Card className="shadow-strong border-0 bg-card">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl flex items-center justify-center gap-3">

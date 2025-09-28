@@ -1,8 +1,18 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Clock } from "lucide-react";
+import { useEffect } from "react";
 
 const OurApps = () => {
+  useEffect(() => {
+    import('aos').then(AOS => {
+      AOS.default.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+    });
+  }, []);
   return (
     <section className="py-20 bg-muted/30" id="apps">
       <div className="container mx-auto px-4">
@@ -13,7 +23,7 @@ const OurApps = () => {
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="300">
           <Card className="shadow-strong hover:shadow-glow transition-smooth transform hover:scale-105 bg-gradient-subtle border-0">
             <CardHeader className="text-center pb-4">
               <div className="flex items-center justify-center gap-3 mb-4">

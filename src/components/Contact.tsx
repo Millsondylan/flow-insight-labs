@@ -1,10 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail, MessageSquare, Phone, MapPin } from "lucide-react";
+import { useEffect } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    import('aos').then(AOS => {
+      AOS.default.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+    });
+  }, []);
   return (
-    <section className="py-20 bg-muted/30" id="contact">
+    <section className="py-20 bg-muted/30" id="contact" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h2>
@@ -14,7 +24,7 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0">
+          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0" data-aos="zoom-in" data-aos-delay="200">
             <CardHeader>
               <div className="mx-auto mb-4 p-4 bg-gradient-primary rounded-full w-fit">
                 <Mail className="w-8 h-8 text-white" />
@@ -34,7 +44,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0">
+          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0" data-aos="zoom-in" data-aos-delay="400">
             <CardHeader>
               <div className="mx-auto mb-4 p-4 bg-gradient-primary rounded-full w-fit">
                 <MessageSquare className="w-8 h-8 text-white" />

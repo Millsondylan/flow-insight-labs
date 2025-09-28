@@ -1,8 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Target, Zap, Users, BarChart3, CheckCircle } from "lucide-react";
+import { useEffect } from "react";
 
 const AICoach = () => {
+  useEffect(() => {
+    import('aos').then(AOS => {
+      AOS.default.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+    });
+  }, []);
   const benefits = [
     "Seamless integration into existing platforms",
     "Customizable AI recommendations across industries", 
@@ -13,7 +23,7 @@ const AICoach = () => {
   ];
 
   return (
-    <section className="py-20 bg-background" id="ai-coach">
+    <section className="py-20 bg-background" id="ai-coach" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -25,7 +35,7 @@ const AICoach = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          <div className="space-y-8">
+          <div className="space-y-8" data-aos="fade-right" data-aos-delay="200">
             <Card className="p-6 bg-gradient-subtle border-0 shadow-soft">
               <CardContent className="p-0">
                 <div className="flex items-start gap-4">
@@ -75,7 +85,7 @@ const AICoach = () => {
             </Card>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8" data-aos="fade-left" data-aos-delay="400">
             <div className="bg-card p-8 rounded-2xl shadow-strong">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <BarChart3 className="w-8 h-8 text-primary" />
