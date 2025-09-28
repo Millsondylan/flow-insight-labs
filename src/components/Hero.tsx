@@ -18,14 +18,7 @@ const Hero = () => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
             Transform your data into profitable actions with cutting-edge AI tools designed for business optimization and personal productivity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="hero" 
-              size="xl"
-              onClick={() => document.getElementById('ai-coach')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Get Started
-            </Button>
+          <div className="flex justify-center">
             <Button 
               variant="soft" 
               size="xl"

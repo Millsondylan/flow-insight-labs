@@ -13,7 +13,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0">
             <CardHeader>
               <div className="mx-auto mb-4 p-4 bg-gradient-primary rounded-full w-fit">
@@ -34,7 +34,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0 md:col-span-2 lg:col-span-1">
+          <Card className="text-center shadow-soft hover:shadow-strong transition-smooth bg-card border-0">
             <CardHeader>
               <div className="mx-auto mb-4 p-4 bg-gradient-primary rounded-full w-fit">
                 <MessageSquare className="w-8 h-8 text-white" />
@@ -48,7 +48,7 @@ const Contact = () => {
               <Button 
                 variant="premium" 
                 className="w-full"
-                onClick={() => window.open('https://wa.me/27674420379?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20AI%20Coach%20integration%20services.', '_blank')}
+                onClick={() => window.open('https://wa.me/27674420379?text=Hi,%20I%27d%20like%20to%20learn%20more%20about%20your%20AI%20Coach%20integration%20services.', '_blank')}
               >
                 Chat on WhatsApp
               </Button>
