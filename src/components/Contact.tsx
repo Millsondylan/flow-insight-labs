@@ -48,7 +48,7 @@ const Contact = () => {
               <Button 
                 variant="premium" 
                 className="w-full"
-                onClick={() => window.open('https://wa.me/27674420379?text=Hi,%20I%27d%20like%20to%20learn%20more%20about%20your%20AI%20Coach%20integration%20services.', '_blank')}
+                onClick={() => window.open('https://wa.me/27674420379', '_blank')}
               >
                 Chat on WhatsApp
               </Button>
