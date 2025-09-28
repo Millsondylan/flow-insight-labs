@@ -16,8 +16,8 @@ const SuggestApp = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("App suggestion submitted:", formData);
+    const emailBody = `Name: ${formData.name}%0AEmail: ${formData.email}%0AIndustry: ${formData.industry}%0A%0AApp Idea:%0A${encodeURIComponent(formData.appIdea)}`;
+    window.location.href = `mailto:Support@insight-flowai.com?subject=New App Suggestion from ${formData.name}&body=${emailBody}`;
   };
 
   const handleInputChange = (field: string, value: string) => {

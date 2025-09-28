@@ -19,10 +19,18 @@ const Hero = () => {
             Transform your data into profitable actions with cutting-edge AI tools designed for business optimization and personal productivity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="xl">
-              Explore Our Solutions
+            <Button 
+              variant="hero" 
+              size="xl"
+              onClick={() => document.getElementById('ai-coach')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get Started
             </Button>
-            <Button variant="soft" size="xl">
+            <Button 
+              variant="soft" 
+              size="xl"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Contact Us
             </Button>
           </div>

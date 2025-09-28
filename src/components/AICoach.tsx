@@ -95,7 +95,12 @@ const AICoach = () => {
               <p className="text-lg text-muted-foreground mb-6">
                 Ready to unlock the power of data-driven success?
               </p>
-              <Button variant="premium" size="xl" className="w-full sm:w-auto">
+              <Button 
+                variant="premium" 
+                size="xl" 
+                className="w-full sm:w-auto"
+                onClick={() => window.location.href = 'mailto:Support@insight-flowai.com?subject=AI Coach Integration Inquiry&body=Hi%2C%0A%0AI%27m interested in integrating your AI Coach into my platform. Could you please provide more information about the integration process and pricing%3F%0A%0AThank you%21'}
+              >
                 <Users className="w-5 h-5 mr-2" />
                 Integrate AI Coach Today
               </Button>
