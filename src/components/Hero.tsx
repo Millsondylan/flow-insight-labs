@@ -10,12 +10,16 @@ const Hero = () => {
 
   useEffect(() => {
     import('aos').then(AOS => {
-      AOS.default.init({
-        duration: 1200,
-        once: true,
-        offset: 50,
-        easing: 'ease-out-cubic'
-      });
+      if (AOS.default && AOS.default.init) {
+        AOS.default.init({
+          duration: 1200,
+          once: true,
+          offset: 50,
+          easing: 'ease-out-cubic'
+        });
+      }
+    }).catch(error => {
+      console.warn('AOS failed to load:', error);
     });
   }, []);
 
