@@ -28,19 +28,19 @@ const AICoach = () => {
     {
       icon: Brain,
       title: "Smart Data Analysis",
-      description: "Our AI meticulously analyzes user-provided data to deliver tailored recommendations, such as optimizing routes for higher earnings or identifying peak demand periods.",
+      description: "Our AI meticulously analyzes user-provided data to deliver tailored recommendations. For example, imagine a rideshare driver uploading their trip data - our AI could optimize routes for higher earnings and identify peak demand periods to increase fares.",
       delay: "200"
     },
     {
       icon: Target,
       title: "Actionable Results",
-      description: "These insights are designed to drive measurable results, enhancing user performance and satisfaction while positioning your business as a technology leader.",
+      description: "These insights are designed to drive measurable results, enhancing user performance and satisfaction. By integrating our AI Coach, your platform gains a competitive edge, offering personalized guidance that fosters user engagement and loyalty.",
       delay: "400"
     },
     {
       icon: Zap,
       title: "Competitive Edge",
-      description: "Our solution is fully customizable, scalable across industries, and designed for effortless implementation to give your platform a competitive advantage.",
+      description: "This innovative feature not only positions your business as a leader in technology but also drives retention and revenue growth. Our solution is fully customizable, scalable across industries, and designed for effortless implementation.",
       delay: "600"
     }
   ];
@@ -62,7 +62,7 @@ const AICoach = () => {
             Integrate Our AI Coach
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Elevate your business platform with our cutting-edge AI Coach, transforming user data into actionable insights that drive profitability and sustainable growth.
+            Elevate your business platform with our cutting-edge AI Coach, seamlessly integrated into your website or mobile application. Our solution transforms user-provided data into actionable insights, empowering your customers to maximize their potential and profitability.
           </p>
         </div>
 
@@ -137,6 +137,108 @@ const AICoach = () => {
                 <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-smooth"></div>
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Use Case Example Section */}
+        <div className="mt-32 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="800">
+          <div className="bg-gradient-card p-12 rounded-3xl shadow-floating border border-border/50 backdrop-blur-sm wave-float-delay-1 shimmer-wave">
+            <div className="text-center mb-12">
+              <h3 className="text-4xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+                Hypothetical Use Case Example
+              </h3>
+              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                See how our AI Coach could transform raw data into profitable insights across different industries
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <div className="p-6 bg-gradient-glass rounded-2xl border border-border/30">
+                  <h4 className="text-2xl font-bold mb-4 flex items-center gap-3">
+                    <div className="p-2 bg-gradient-primary rounded-lg">
+                      <Target className="w-6 h-6 text-white" />
+                    </div>
+                    Rideshare Driver Optimization
+                  </h4>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                    In this hypothetical scenario, when a rideshare driver uploads their trip data, our AI could analyze patterns to deliver tailored recommendations:
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                      <span>Optimizing routes for higher earnings potential</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                      <span>Identifying peak demand periods to increase fares</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                      <span>Suggesting optimal working hours for maximum profit</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                      <span>Predicting high-demand areas and times</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="p-6 bg-gradient-glass rounded-2xl border border-border/30">
+                  <h4 className="text-2xl font-bold mb-4 flex items-center gap-3">
+                    <div className="p-2 bg-gradient-primary rounded-lg">
+                      <BarChart3 className="w-6 h-6 text-white" />
+                    </div>
+                    Potential Benefits
+                  </h4>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span>Improved operational efficiency through data-driven insights</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span>Enhanced user engagement with personalized recommendations</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span>Optimized resource allocation and time management</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span>Competitive advantage through AI-powered analytics</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-20 text-center" data-aos="fade-up" data-aos-delay="1000">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h3 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Unlock the Power of Data-Driven Success
+            </h3>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Contact us today to integrate our AI Coach and transform your platform into a hub of profitability and innovation.
+            </p>
+            <Button
+              variant="premium"
+              size="xl"
+              className="group shadow-floating hover:shadow-glow transition-spring relative overflow-hidden"
+              onClick={() => window.location.href = 'mailto:Support@insight-flowai.com?subject=AI Coach Integration Inquiry - Transform My Platform&body=Hi%2C%0A%0AI%27m interested in integrating your AI Coach into my platform to unlock data-driven success. Could you please provide more information about%3A%0A%0A- Integration process and timeline%0A- Customization options for my industry%0A- Pricing and scalability options%0A- Success metrics and ROI expectations%0A%0AThank you%21'}
+            >
+              <div className="flex items-center gap-3">
+                <Brain className="w-6 h-6 group-hover:scale-110 transition-spring" />
+                <span className="text-lg">Start Your AI Integration Today</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-spring" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-smooth"></div>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,10 +1,7 @@
 import Navigation from "@/components/Navigation";
-import WebsiteDevelopment from "@/components/WebsiteDevelopment";
-import SuggestApp from "@/components/SuggestApp";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Briefcase, Sparkles } from "lucide-react";
+import { ArrowLeft, Briefcase, Sparkles, Code, Lightbulb, CheckCircle, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -26,68 +23,172 @@ const WorkWithUs = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-hero overflow-hidden pt-20">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-primary opacity-10 rounded-full blur-3xl wave-float"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent opacity-10 rounded-full blur-3xl wave-float-delay-1"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-primary opacity-5 rounded-full blur-2xl wave-scroll"></div>
-
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div data-aos="fade-up" data-aos-delay="200">
-              <div className="flex items-center justify-center gap-2 mb-6 opacity-80">
-                <Sparkles className="w-5 h-5 text-accent animate-shimmer" />
-                <span className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
-                  Professional Services
-                </span>
-                <Sparkles className="w-5 h-5 text-accent animate-shimmer" />
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 leading-tight tracking-tight">
-                Work With Us
-              </h1>
-            </div>
-
-            <p
-              className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed font-light"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              Partner with us to transform your business. From website development to AI solutions and custom applications, we provide comprehensive services to drive your success.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
-              <Button
-                variant="outline"
-                size="xl"
-                className="group border-2 border-muted-foreground/20 hover:border-primary/50 transition-all duration-500 ease-out bg-glass backdrop-blur-sm"
-                onClick={() => navigate("/")}
-              >
-                <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-                Back to Home
-              </Button>
-
-              <Button
-                variant="soft"
-                size="xl"
-                className="group relative overflow-hidden shadow-floating hover:shadow-glow transition-all duration-500 ease-out"
-                onClick={() => document.getElementById('website-development')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <span className="relative z-10">View All Services</span>
-                <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-all duration-700 ease-out"></div>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
-      </section>
 
       <main>
-        <WebsiteDevelopment />
-        <SuggestApp />
-        <Contact />
+        {/* Services Overview Section */}
+        <section className="py-20 pt-32 bg-background relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-primary opacity-8 rounded-full blur-3xl wave-float-delay-2"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent opacity-8 rounded-full blur-3xl wave-float"></div>
+          <div className="absolute top-1/2 left-1/3 w-40 h-40 bg-primary opacity-5 rounded-full blur-2xl wave-scroll-reverse"></div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16" data-aos="fade-up">
+              <div className="inline-flex items-center gap-2 bg-gradient-glass px-4 py-2 rounded-full mb-6 shadow-soft">
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Our Services</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+                Comprehensive Digital Solutions
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Choose the service that best fits your needs. Each service has its own dedicated page with detailed information and specialized forms.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Website Development Card */}
+              <div
+                className="group bg-gradient-card p-8 rounded-3xl shadow-soft hover:shadow-floating transition-spring cursor-pointer border border-border/30 backdrop-blur-sm wave-float shimmer-wave relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                onClick={() => navigate('/website-development')}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                <div className="relative z-10">
+                  <div className="p-4 bg-gradient-primary rounded-2xl w-fit mb-6 shadow-glow group-hover:scale-110 transition-spring">
+                    <Code className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-smooth">
+                    Website Development
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Custom websites built with cutting-edge technology. Responsive, fast, and optimized for conversions and user experience.
+                  </p>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Modern React & TypeScript</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Performance Optimized</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">SEO & Mobile Ready</span>
+                    </div>
+                  </div>
+                  <Button variant="premium" className="w-full group-hover:shadow-glow transition-spring">
+                    Start Your Project
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-spring" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* App Development Card */}
+              <div
+                className="group bg-gradient-card p-8 rounded-3xl shadow-soft hover:shadow-floating transition-spring cursor-pointer border border-border/30 backdrop-blur-sm wave-scroll shimmer-wave relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="400"
+                onClick={() => navigate('/app-development')}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                <div className="relative z-10">
+                  <div className="p-4 bg-gradient-primary rounded-2xl w-fit mb-6 shadow-glow group-hover:scale-110 transition-spring">
+                    <Lightbulb className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-smooth">
+                    Custom App Development
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Transform your innovative ideas into powerful applications. We collaborate with you to bring your vision to life.
+                  </p>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">AI-Powered Solutions</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Cross-Platform Development</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Scalable Architecture</span>
+                    </div>
+                  </div>
+                  <Button variant="premium" className="w-full group-hover:shadow-glow transition-spring">
+                    Share Your Idea
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-spring" />
+                  </Button>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Value Proposition Section */}
+            <div className="mt-20 max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-delay="800">
+              <div className="bg-gradient-card p-10 rounded-3xl shadow-floating border border-border/50 backdrop-blur-sm wave-float-delay-1 shimmer-wave">
+                <h3 className="text-3xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+                  Why Choose Insight Flow AI?
+                </h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-medium">End-to-End Solutions</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-medium">AI-First Approach</span>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-medium">Proven Track Record</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-gradient-primary rounded-lg">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-medium">Ongoing Support</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="mt-16 text-center" data-aos="fade-up" data-aos-delay="1000">
+              <div className="max-w-3xl mx-auto space-y-6">
+                <h3 className="text-2xl font-bold text-foreground">
+                  Ready to Transform Your Business?
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Choose the service that best fits your needs, or contact us to discuss a custom solution tailored to your specific requirements.
+                </p>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="group shadow-soft hover:shadow-floating transition-spring"
+                  onClick={() => navigate('/contact')}
+                >
+                  <Briefcase className="w-5 h-5 mr-2 group-hover:scale-110 transition-spring" />
+                  <span>Get in Touch</span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-spring" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

@@ -1,12 +1,12 @@
 import Navigation from "@/components/Navigation";
-import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, HelpCircle, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-const ContactPage = () => {
+const FAQPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +24,8 @@ const ContactPage = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main id="contact" className="pt-20">
-        <Contact />
+      <main id="faq" className="pt-20">
+        <FAQ />
       </main>
 
       <Footer />
@@ -33,4 +33,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default FAQPage;

@@ -17,12 +17,13 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+    const navItems = [
     { label: "Home", href: "/" },
-    { label: "Our Apps", href: "/#apps" },
     { label: "AI Coach", href: "/ai-coach" },
     { label: "Work With Us", href: "/work-with-us" },
     { label: "Contact", href: "/contact" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Privacy", href: "/privacy" },
   ];
 
   const handleNavigation = (href: string) => {
@@ -42,7 +43,9 @@ const Navigation = () => {
       const element = document.querySelector(href);
       element?.scrollIntoView({ behavior: "smooth" });
     } else {
+      // Navigate to page and scroll to top
       navigate(href);
+      window.scrollTo(0, 0);
     }
     setIsOpen(false);
   };
@@ -58,7 +61,7 @@ const Navigation = () => {
           {/* Enhanced Logo */}
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => navigate("/")}>
             <div className="p-2 bg-gradient-primary rounded-xl shadow-soft group-hover:shadow-glow transition-spring">
-              <Brain className="w-6 h-6 text-white animate-glow" />
+              <img src="/favicon.svg" alt="Insight Flow AI" className="w-6 h-6 animate-glow" />
             </div>
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent group-hover:scale-105 transition-spring">
               Insight Flow AI
@@ -82,14 +85,6 @@ const Navigation = () => {
                 }`}></span>
               </button>
             ))}
-            <Button 
-              variant="hero" 
-              size="sm" 
-              className="ml-4 shadow-soft hover:shadow-glow transition-spring"
-              onClick={() => handleNavigation('/contact')}
-            >
-              Get Started
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -115,14 +110,6 @@ const Navigation = () => {
                   {item.label}
                 </button>
               ))}
-              <Button 
-                variant="hero" 
-                size="sm" 
-                className="w-fit mx-4 shadow-soft"
-                onClick={() => handleNavigation('/contact')}
-              >
-                Get Started
-              </Button>
             </div>
           </div>
         )}
