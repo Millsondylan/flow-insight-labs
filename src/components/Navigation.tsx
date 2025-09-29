@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Brain } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,17 +18,31 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: "Our Apps", href: "#apps" },
-    { label: "AI Coach", href: "#ai-coach" },
-    { label: "Contact", href: "#contact" },
-    { label: "Privacy", href: "#privacy" },
-    { label: "Suggest App", href: "#suggest-app" },
+    { label: "Home", href: "/" },
+    { label: "Our Apps", href: "/#apps" },
+    { label: "AI Coach", href: "/ai-coach" },
+    { label: "Work With Us", href: "/work-with-us" },
+    { label: "Contact", href: "/contact" },
   ];
 
-  const scrollToSection = (href: string) => {
-    if (href.startsWith("#")) {
+  const handleNavigation = (href: string) => {
+    if (href.startsWith("/#")) {
+      // Navigate to home page and scroll to section
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.querySelector(href.substring(1));
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const element = document.querySelector(href.substring(1));
+        element?.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (href.startsWith("#")) {
       const element = document.querySelector(href);
       element?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(href);
     }
     setIsOpen(false);
   };
@@ -39,7 +56,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Enhanced Logo */}
-          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => navigate("/")}>
             <div className="p-2 bg-gradient-primary rounded-xl shadow-soft group-hover:shadow-glow transition-spring">
               <Brain className="w-6 h-6 text-white animate-glow" />
             </div>
@@ -53,19 +70,23 @@ const Navigation = () => {
             {navItems.map((item, index) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="relative text-foreground hover:text-primary transition-spring font-medium group py-2"
+                onClick={() => handleNavigation(item.href)}
+                className={`relative text-foreground hover:text-primary transition-spring font-medium group py-2 ${
+                  item.href === location.pathname ? "text-primary" : ""
+                }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-spring"></span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-primary group-hover:w-full transition-spring ${
+                  item.href === location.pathname ? "w-full" : "w-0"
+                }`}></span>
               </button>
             ))}
             <Button 
               variant="hero" 
               size="sm" 
               className="ml-4 shadow-soft hover:shadow-glow transition-spring"
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => handleNavigation('/contact')}
             >
               Get Started
             </Button>
@@ -87,7 +108,7 @@ const Navigation = () => {
               {navItems.map((item, index) => (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="text-left text-foreground hover:text-primary transition-smooth font-medium py-2 px-4 hover:bg-muted/30 rounded-lg"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -98,7 +119,7 @@ const Navigation = () => {
                 variant="hero" 
                 size="sm" 
                 className="w-fit mx-4 shadow-soft"
-                onClick={() => scrollToSection('#contact')}
+                onClick={() => handleNavigation('/contact')}
               >
                 Get Started
               </Button>

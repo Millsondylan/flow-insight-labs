@@ -1,4 +1,4 @@
-import { Brain, Mail, MessageSquare, Lightbulb } from "lucide-react";
+import { Brain, Mail, Lightbulb } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,23 +9,23 @@ const Footer = () => {
       links: [
         { label: "AI Coach Integration", href: "#ai-coach" },
         { label: "Trading Journal Pro", href: "#apps" },
-        { label: "Custom Development", href: "#contact" },
+        { label: "Custom Development", href: "#website-development" },
       ]
     },
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "#" },
+        { label: "About Us", href: "#about" },
         { label: "Privacy Policy", href: "#privacy" },
-        { label: "Terms of Service", href: "#" },
+        { label: "Terms of Service", href: "#terms" },
       ]
     },
     {
       title: "Support",
       links: [
         { label: "Contact Support", href: "mailto:Support@insight-flowai.com" },
-        { label: "Documentation", href: "#" },
-        { label: "FAQ", href: "#" },
+        { label: "Documentation", href: "#documentation" },
+        { label: "FAQ", href: "#faq" },
       ]
     }
   ];
@@ -54,9 +54,6 @@ const Footer = () => {
               >
                 <Mail className="w-5 h-5 text-muted-foreground" />
               </a>
-              <button className="p-2 bg-muted/50 rounded-lg hover:bg-muted/80 transition-smooth">
-                <MessageSquare className="w-5 h-5 text-muted-foreground" />
-              </button>
               <a 
                 href="#suggest-app"
                 className="p-2 bg-muted/50 rounded-lg hover:bg-muted/80 transition-smooth"
@@ -96,7 +93,7 @@ const Footer = () => {
               <a href="#privacy" className="text-muted-foreground/80 hover:text-foreground transition-smooth">
                 Privacy Policy
               </a>
-              <a href="#" className="text-muted-foreground/80 hover:text-foreground transition-smooth">
+              <a href="#terms" className="text-muted-foreground/80 hover:text-foreground transition-smooth">
                 Terms of Service
               </a>
               <a href="mailto:Support@insight-flowai.com" className="text-muted-foreground/80 hover:text-foreground transition-smooth">

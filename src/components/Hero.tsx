@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-ai-bg.jpg";
 import { useEffect, useRef } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const heroImageRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     import('aos').then(AOS => {
@@ -25,9 +27,9 @@ const Hero = () => {
         requestAnimationFrame(() => {
           if (heroImageRef.current) {
             const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.3;
-            const waveX = Math.sin(scrolled * 0.008) * 15;
-            const waveY = Math.cos(scrolled * 0.012) * 8;
+            const rate = scrolled * -0.2;
+            const waveX = Math.sin(scrolled * 0.005) * 10;
+            const waveY = Math.cos(scrolled * 0.008) * 5;
 
             heroImageRef.current.style.transform = `translate3d(${waveX}px, ${rate + waveY}px, 0)`;
           }
@@ -83,23 +85,23 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
-            <Button 
-              variant="soft" 
+            <Button
+              variant="soft"
               size="xl"
-              className="group relative overflow-hidden shadow-floating hover:shadow-glow transition-spring"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative overflow-hidden shadow-floating hover:shadow-glow transition-all duration-500 ease-out"
+              onClick={() => navigate('/contact')}
             >
               <span className="relative z-10">Contact Us Today</span>
-              <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-smooth"></div>
+              <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-all duration-700 ease-out"></div>
             </Button>
-            
-            <Button 
-              variant="outline" 
+
+            <Button
+              variant="outline"
               size="xl"
-              className="group border-2 border-muted-foreground/20 hover:border-primary/50 transition-spring bg-glass backdrop-blur-sm"
-              onClick={() => document.getElementById('apps')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group border-2 border-muted-foreground/20 hover:border-primary/50 transition-all duration-500 ease-out bg-glass backdrop-blur-sm"
+              onClick={() => navigate('/work-with-us')}
             >
-              Explore Our Solutions
+              Work With Us
             </Button>
           </div>
         </div>
