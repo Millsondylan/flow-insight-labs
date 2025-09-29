@@ -3,10 +3,12 @@ import heroImage from "@/assets/hero-ai-bg.jpg";
 import { useEffect, useRef } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Hero = () => {
   const heroImageRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { trackButtonClick } = useAnalytics();
 
   useEffect(() => {
     import('aos').then(AOS => {
@@ -93,7 +95,10 @@ const Hero = () => {
               variant="soft"
               size="xl"
               className="group relative overflow-hidden shadow-floating hover:shadow-glow transition-all duration-500 ease-out"
-              onClick={() => navigate('/contact')}
+              onClick={() => {
+                trackButtonClick('Contact Us Today', 'hero');
+                navigate('/contact');
+              }}
             >
               <span className="relative z-10">Contact Us Today</span>
               <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-all duration-700 ease-out"></div>
@@ -103,7 +108,10 @@ const Hero = () => {
               variant="outline"
               size="xl"
               className="group border-2 border-muted-foreground/20 hover:border-primary/50 transition-all duration-500 ease-out bg-glass backdrop-blur-sm"
-              onClick={() => navigate('/work-with-us')}
+              onClick={() => {
+                trackButtonClick('Work With Us', 'hero');
+                navigate('/work-with-us');
+              }}
             >
               Work With Us
             </Button>

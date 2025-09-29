@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import Analytics from "./components/Analytics";
 import Index from "./pages/Index";
 import WorkWithUs from "./pages/WorkWithUs";
 import AICoachPage from "./pages/AICoachPage";
@@ -33,6 +34,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <ScrollToTop />
+            <Analytics />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/work-with-us" element={<WorkWithUs />} />
