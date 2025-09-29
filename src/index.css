@@ -124,7 +124,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground dark;
+    @apply bg-background text-foreground;
   }
 
   /* Enhanced text visibility in dark theme */
@@ -154,27 +154,33 @@ All colors MUST be HSL.
 @layer utilities {
   /* Wave scroll animations */
   .wave-float {
-    animation: waveFloat 3s ease-in-out infinite;
+    animation: waveFloat 4s ease-in-out infinite;
+    will-change: transform;
   }
 
   .wave-float-delay-1 {
-    animation: waveFloat 3s ease-in-out infinite 0.5s;
+    animation: waveFloat 4s ease-in-out infinite 0.8s;
+    will-change: transform;
   }
 
   .wave-float-delay-2 {
-    animation: waveFloat 3s ease-in-out infinite 1s;
+    animation: waveFloat 4s ease-in-out infinite 1.6s;
+    will-change: transform;
   }
 
   .wave-float-delay-3 {
-    animation: waveFloat 3s ease-in-out infinite 1.5s;
+    animation: waveFloat 4s ease-in-out infinite 2.4s;
+    will-change: transform;
   }
 
   .wave-scroll {
-    animation: waveScroll 4s ease-in-out infinite;
+    animation: waveScroll 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   .wave-scroll-reverse {
-    animation: waveScrollReverse 4s ease-in-out infinite;
+    animation: waveScrollReverse 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   .shimmer-wave {
@@ -201,7 +207,8 @@ All colors MUST be HSL.
   /* Scroll-triggered wave animation */
   .scroll-wave {
     transform: translateY(0px);
-    transition: transform 0.3s ease-out;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   /* Background wave animation for images */
@@ -214,9 +221,10 @@ All colors MUST be HSL.
   }
 
   .hero-bg-wave {
-    animation: backgroundWave 10s ease-in-out infinite;
-    filter: blur(0.5px) brightness(1.1) contrast(1.05);
-    transition: filter 0.3s ease-out, transform 0.1s ease-out;
+    animation: backgroundWave 12s ease-in-out infinite;
+    filter: blur(0.3px) brightness(1.05) contrast(1.02);
+    transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s ease-out;
+    will-change: transform, filter;
   }
 
   .hero-bg-wave:hover {

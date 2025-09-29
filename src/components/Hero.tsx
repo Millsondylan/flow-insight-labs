@@ -18,18 +18,26 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (heroImageRef.current) {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        const waveX = Math.sin(scrolled * 0.01) * 20;
-        const waveY = Math.cos(scrolled * 0.015) * 10;
+    let ticking = false;
 
-        heroImageRef.current.style.transform = `translate3d(${waveX}px, ${rate + waveY}px, 0)`;
+    const handleScroll = () => {
+      if (!ticking && heroImageRef.current) {
+        requestAnimationFrame(() => {
+          if (heroImageRef.current) {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            const waveX = Math.sin(scrolled * 0.008) * 15;
+            const waveY = Math.cos(scrolled * 0.012) * 8;
+
+            heroImageRef.current.style.transform = `translate3d(${waveX}px, ${rate + waveY}px, 0)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
