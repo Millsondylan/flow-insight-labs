@@ -32,8 +32,8 @@ const OurApps = () => {
         </div>
         
         <div className="max-w-5xl mx-auto" data-aos="zoom-in" data-aos-delay="300">
-          <Card className="group shadow-floating hover:shadow-glow transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative">
-            {/* Shimmer effect */}
+          <Card className="group shadow-floating hover:shadow-glow transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative wave-float shimmer-wave">
+            {/* Enhanced shimmer wave effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             
             <CardHeader className="text-center pb-6 relative z-10">
@@ -56,18 +56,18 @@ const OurApps = () => {
                 Revolutionize your trading strategy with our AI-powered journal that analyzes your trading data to deliver personalized insights, optimize entry and exit points, and identify profitable patterns. Transform your trading performance with data-driven recommendations tailored to maximize your returns and minimize risk.
               </CardDescription>
               
-              {/* Feature highlights */}
+              {/* Feature highlights with wave animations */}
               <div className="grid md:grid-cols-3 gap-6 mt-8">
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth wave-scroll shimmer-wave">
+                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse wave-float"></div>
                   <span className="text-sm font-medium">AI Pattern Recognition</span>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth wave-float-delay-1">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse wave-scroll" style={{animationDelay: '0.5s'}}></div>
                   <span className="text-sm font-medium">Risk Optimization</span>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-glass backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-smooth wave-scroll-reverse">
+                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse wave-float-delay-2" style={{animationDelay: '1s'}}></div>
                   <span className="text-sm font-medium">Performance Analytics</span>
                 </div>
               </div>

@@ -66,41 +66,55 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 220 30% 3%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 220 25% 4%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 220 25% 4%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 205 100% 60%;
+    --primary-foreground: 220 30% 3%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 220 20% 8%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 20% 8%;
+    --muted-foreground: 215 20.2% 75%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 185 85% 65%;
+    --accent-foreground: 220 30% 3%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
+    --border: 220 15% 12%;
+    --input: 220 15% 12%;
+    --ring: 205 100% 60%;
+
+    /* Enhanced dark theme gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(205 100% 60%), hsl(185 85% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 30% 3%) 0%, hsl(220 20% 5% / 0.8) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(205 100% 60% / 0.15) 0%, hsl(185 85% 65% / 0.2) 50%, hsl(160 65% 65% / 0.15) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 25% 4%) 0%, hsl(220 15% 6% / 0.8) 100%);
+    --gradient-glass: linear-gradient(145deg, hsl(220 30% 3% / 0.95) 0%, hsl(220 20% 5% / 0.9) 100%);
+
+    --shadow-soft: 0 2px 25px hsl(205 100% 60% / 0.15);
+    --shadow-strong: 0 10px 50px hsl(205 100% 60% / 0.2);
+    --shadow-glow: 0 0 60px hsl(185 85% 65% / 0.3);
+    --shadow-glass: 0 8px 40px hsl(220 30% 3% / 0.4);
+    --shadow-floating: 0 25px 80px hsl(205 100% 60% / 0.2);
+
+    --sidebar-background: 220 25% 4%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-primary: 205 100% 60%;
+    --sidebar-primary-foreground: 220 30% 3%;
+    --sidebar-accent: 220 20% 8%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 220 15% 12%;
+    --sidebar-ring: 205 100% 60%;
   }
 }
 
@@ -110,6 +124,143 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground dark;
+  }
+
+  /* Enhanced text visibility in dark theme */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: hsl(210 40% 98%);
+  }
+
+  .dark .text-muted-foreground {
+    color: hsl(215 20.2% 75%);
+  }
+
+  .dark .bg-gradient-glass {
+    background: linear-gradient(145deg, hsl(220 30% 3% / 0.95) 0%, hsl(220 20% 5% / 0.9) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(220 15% 12% / 0.5);
+  }
+
+  .dark .shadow-glow {
+    box-shadow: 0 0 60px hsl(185 85% 65% / 0.4);
+  }
+
+  .dark .shadow-floating {
+    box-shadow: 0 25px 80px hsl(205 100% 60% / 0.3);
+  }
+}
+
+@layer utilities {
+  /* Wave scroll animations */
+  .wave-float {
+    animation: waveFloat 3s ease-in-out infinite;
+  }
+
+  .wave-float-delay-1 {
+    animation: waveFloat 3s ease-in-out infinite 0.5s;
+  }
+
+  .wave-float-delay-2 {
+    animation: waveFloat 3s ease-in-out infinite 1s;
+  }
+
+  .wave-float-delay-3 {
+    animation: waveFloat 3s ease-in-out infinite 1.5s;
+  }
+
+  .wave-scroll {
+    animation: waveScroll 4s ease-in-out infinite;
+  }
+
+  .wave-scroll-reverse {
+    animation: waveScrollReverse 4s ease-in-out infinite;
+  }
+
+  .shimmer-wave {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-wave::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      transparent,
+      hsl(205 100% 45% / 0.1),
+      hsl(185 85% 60% / 0.1),
+      transparent
+    );
+    animation: shimmerWave 2s infinite;
+  }
+
+  /* Scroll-triggered wave animation */
+  .scroll-wave {
+    transform: translateY(0px);
+    transition: transform 0.3s ease-out;
+  }
+}
+
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-1deg);
+  }
+}
+
+@keyframes waveScroll {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(5px) translateY(-3px);
+  }
+  50% {
+    transform: translateX(0px) translateY(-8px);
+  }
+  75% {
+    transform: translateX(-5px) translateY(-3px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes waveScrollReverse {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-3px);
+  }
+  50% {
+    transform: translateX(0px) translateY(-8px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-3px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes shimmerWave {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
   }
 }

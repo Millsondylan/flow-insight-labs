@@ -17,9 +17,10 @@ const Contact = () => {
 
   return (
     <section className="py-24 bg-gradient-subtle relative overflow-hidden" id="contact">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-primary opacity-5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-primary opacity-5 rounded-full blur-3xl"></div>
+      {/* Enhanced background decorative elements with wave animations */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-primary opacity-10 rounded-full blur-3xl wave-float"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-primary opacity-10 rounded-full blur-3xl wave-float-delay-1"></div>
+      <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-accent opacity-5 rounded-full blur-2xl wave-scroll"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20" data-aos="fade-up">
@@ -37,9 +38,9 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Email Support Card */}
-          <Card 
-            className="group text-center shadow-soft hover:shadow-floating transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative" 
-            data-aos="slide-in-left" 
+          <Card
+            className="group text-center shadow-soft hover:shadow-floating transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative wave-scroll shimmer-wave"
+            data-aos="slide-in-left"
             data-aos-delay="200"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
@@ -66,9 +67,9 @@ const Contact = () => {
           </Card>
 
           {/* WhatsApp Contact Card */}
-          <Card 
-            className="group text-center shadow-soft hover:shadow-floating transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative" 
-            data-aos="slide-in-right" 
+          <Card
+            className="group text-center shadow-soft hover:shadow-floating transition-spring transform hover:scale-[1.02] bg-gradient-card border-0 overflow-hidden relative wave-scroll-reverse shimmer-wave"
+            data-aos="slide-in-right"
             data-aos-delay="400"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>

@@ -47,9 +47,10 @@ const AICoach = () => {
 
   return (
     <section className="py-24 bg-background relative overflow-hidden" id="ai-coach">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-primary opacity-5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-primary opacity-5 rounded-full blur-3xl"></div>
+      {/* Enhanced background decorative elements with wave animations */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-primary opacity-10 rounded-full blur-3xl wave-float-delay-1"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-primary opacity-10 rounded-full blur-3xl wave-float"></div>
+      <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-accent opacity-5 rounded-full blur-2xl wave-scroll-reverse"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20" data-aos="fade-up">
@@ -69,10 +70,10 @@ const AICoach = () => {
           {/* Features Section */}
           <div className="space-y-8">
             {features.map((feature, index) => (
-              <Card 
+              <Card
                 key={index}
-                className="group p-8 bg-gradient-card border-0 shadow-soft hover:shadow-floating transition-spring cursor-pointer overflow-hidden relative"
-                data-aos="slide-in-left" 
+                className={`group p-8 bg-gradient-card border-0 shadow-soft hover:shadow-floating transition-spring cursor-pointer overflow-hidden relative shimmer-wave ${index === 0 ? 'wave-float' : index === 1 ? 'wave-scroll' : 'wave-scroll-reverse'}`}
+                data-aos="slide-in-left"
                 data-aos-delay={feature.delay}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-smooth"></div>
@@ -97,7 +98,7 @@ const AICoach = () => {
 
           {/* Benefits Section */}
           <div className="space-y-8" data-aos="slide-in-right" data-aos-delay="400">
-            <div className="bg-gradient-card p-10 rounded-3xl shadow-floating border border-border/50 backdrop-blur-sm">
+            <div className="bg-gradient-card p-10 rounded-3xl shadow-floating border border-border/50 backdrop-blur-sm wave-float-delay-2 shimmer-wave">
               <h3 className="text-3xl font-bold mb-8 flex items-center gap-4">
                 <div className="p-3 bg-gradient-primary rounded-xl shadow-glow">
                   <BarChart3 className="w-8 h-8 text-white" />

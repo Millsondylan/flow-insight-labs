@@ -24,10 +24,12 @@ const Hero = () => {
         style={{ backgroundImage: `url(${heroImage})` }}
       ></div>
       
-      {/* Floating elements for visual interest */}
-      <div className="absolute top-20 left-10 w-2 h-2 bg-accent rounded-full animate-float opacity-60"></div>
-      <div className="absolute top-32 right-20 w-3 h-3 bg-primary rounded-full animate-float opacity-40" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-40 left-20 w-1 h-1 bg-accent rounded-full animate-float opacity-50" style={{animationDelay: '2s'}}></div>
+      {/* Enhanced floating elements with wave animations */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-accent rounded-full wave-float opacity-80 shadow-glow"></div>
+      <div className="absolute top-32 right-20 w-3 h-3 bg-primary rounded-full wave-float-delay-1 opacity-60 shadow-glow"></div>
+      <div className="absolute bottom-40 left-20 w-1 h-1 bg-accent rounded-full wave-float-delay-2 opacity-70 shadow-glow"></div>
+      <div className="absolute top-1/2 right-10 w-2 h-2 bg-primary rounded-full wave-scroll opacity-50 shadow-glow"></div>
+      <div className="absolute bottom-60 right-32 w-1.5 h-1.5 bg-accent rounded-full wave-scroll-reverse opacity-60 shadow-glow"></div>
       
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-5xl mx-auto space-y-8">
