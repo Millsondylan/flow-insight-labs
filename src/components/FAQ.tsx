@@ -23,35 +23,35 @@ const FAQ = () => {
   const faqs = [
     {
       question: "How does the AI Coach integration work?",
-      answer: "Our AI Coach seamlessly integrates into your existing platform to analyze user-provided data and deliver personalized recommendations that enhance user performance and satisfaction. The integration is designed for effortless implementation with minimal disruption to your current operations."
+      answer: "Our AI Coach connects to your platform and looks at user data to give personalized tips that help users perform better. We make the setup process simple and won't disrupt how your platform currently works."
     },
     {
       question: "What kind of data does the AI Coach analyze?",
-      answer: "The AI Coach can analyze various types of user-provided data including behavioral patterns, performance metrics, usage trends, and historical data to deliver actionable insights. All data processing occurs within secure, compliant environments."
+      answer: "The AI Coach can look at different types of user data like how they behave, their performance numbers, usage patterns, and past data to give helpful insights. All data is processed securely and safely."
     },
     {
       question: "Can the AI Coach be customized for different industries?",
-      answer: "Yes, our AI Coach is fully customizable and scalable across various industries. Whether you're in trading, e-commerce, logistics, or any other sector, we can tailor the AI recommendations to meet your specific business needs and requirements."
+      answer: "Yes, our AI Coach can be customized for different industries. Whether you're in trading, online stores, shipping, or any other business, we can adjust the AI suggestions to fit what your business needs."
     },
     {
       question: "Is my data secure with your platform?",
-      answer: "Absolutely. We implement enterprise-grade security measures including end-to-end encryption, secure data transmission, and strict access controls. Our privacy practices comply with GDPR, CCPA, and other major privacy regulations to ensure your data remains protected."
+      answer: "Yes, absolutely. We use strong security measures including encryption, secure data transfer, and strict access controls. We follow privacy laws like GDPR and CCPA to keep your data safe."
     },
     {
       question: "How long does it take to integrate the AI Coach?",
-      answer: "The integration timeline varies based on your platform's complexity, but most integrations can be completed within 2-4 weeks. Our team provides comprehensive support throughout the process to ensure a smooth and successful implementation."
+      answer: "Setup time depends on how complex your platform is, but most integrations take 2-4 weeks. Our team helps you through the whole process to make sure everything goes smoothly."
     },
     {
       question: "Do you offer support after implementation?",
-      answer: "Yes, we provide ongoing support and maintenance to ensure optimal performance. Our 24/7 support team is available globally to assist with any questions or issues that may arise post-implementation."
+      answer: "Yes, we provide ongoing support and maintenance to keep everything running well. Our 24/7 support team is available worldwide to help with any questions or problems after setup."
     },
     {
       question: "What is the cost structure for the AI Coach?",
-      answer: "We offer flexible pricing models based on your business size, usage volume, and customization requirements. Our pricing is designed to provide an excellent return on investment while remaining competitive in the market. Contact us for a personalized quote."
+      answer: "We offer flexible pricing based on your business size, how much you use it, and what customization you need. Our pricing is designed to give you good value for money. Contact us for a custom quote."
     },
     {
       question: "How does the Trading Journal Pro work?",
-      answer: "Trading Journal Pro is an AI-powered journal that analyzes your trading data to deliver personalized insights, optimize entry and exit points, and identify profitable patterns. It's designed to revolutionize your trading strategy with data-driven recommendations."
+      answer: "Trading Journal Pro is a smart journal that looks at your trading data to give you personalized tips, help you find better entry and exit points, and spot profitable patterns. It helps improve your trading with data-based recommendations."
     }
   ];
 

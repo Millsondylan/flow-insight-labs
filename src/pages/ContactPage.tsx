@@ -4,21 +4,10 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageCircle, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const ContactPage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    import('aos').then(AOS => {
-      AOS.default.init({
-        duration: 1200,
-        once: true,
-        offset: 100,
-        easing: 'ease-out-cubic'
-      });
-    });
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">

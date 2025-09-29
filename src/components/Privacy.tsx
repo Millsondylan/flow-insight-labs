@@ -8,7 +8,7 @@ const Privacy = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your data security and privacy are our top priorities. Learn how we protect and handle your information.
+            Your data security and privacy are our top priorities. Here's how we protect and handle your information.
           </p>
         </div>
 
@@ -22,7 +22,7 @@ const Privacy = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                We implement enterprise-grade security measures including end-to-end encryption, secure data transmission, and strict access controls to safeguard your information at all times.
+                We use strong security measures including end-to-end encryption, secure data transfer, and strict access controls to keep your information safe at all times.
               </p>
             </CardContent>
           </Card>
@@ -36,7 +36,7 @@ const Privacy = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                All data processing occurs within secure, compliant environments. We never store sensitive information longer than necessary and follow industry best practices for data handling.
+                All data processing happens in secure, compliant environments. We never store sensitive information longer than needed and follow industry best practices for data handling.
               </p>
             </CardContent>
           </Card>
@@ -50,7 +50,7 @@ const Privacy = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                We maintain full transparency about data collection, usage, and retention. You have complete control over your data with options to access, modify, or delete your information anytime.
+                We're completely transparent about how we collect, use, and store data. You have full control over your data and can access, change, or delete your information anytime.
               </p>
             </CardContent>
           </Card>
@@ -64,7 +64,7 @@ const Privacy = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                Our privacy practices comply with GDPR, CCPA, and other major privacy regulations. We regularly audit our systems and update policies to maintain the highest standards.
+                Our privacy practices follow GDPR, CCPA, and other major privacy laws. We regularly check our systems and update policies to maintain the highest standards.
               </p>
             </CardContent>
           </Card>

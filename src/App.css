@@ -1,5 +1,28 @@
 /* Global styles for Insight Flow AI - optimized for performance */
 
-.scroll-smooth {
-  scroll-behavior: smooth;
+/* Removed scroll-behavior: smooth to prevent conflicts with GSAP */
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable GSAP animations */
+  .gsap-animation {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  /* Ensure all elements remain visible */
+  [data-gsap] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
