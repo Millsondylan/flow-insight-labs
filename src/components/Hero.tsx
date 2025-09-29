@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-ai-bg.jpg";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
 
 const Hero = () => {
+  const heroImageRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     import('aos').then(AOS => {
       AOS.default.init({
@@ -15,12 +17,29 @@ const Hero = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroImageRef.current) {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        const waveX = Math.sin(scrolled * 0.01) * 20;
+        const waveY = Math.cos(scrolled * 0.015) * 10;
+
+        heroImageRef.current.style.transform = `translate3d(${waveX}px, ${rate + waveY}px, 0)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
       {/* Enhanced background layers */}
       <div className="absolute inset-0 bg-gradient-glass"></div>
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-15 transition-smooth"
+      <div
+        ref={heroImageRef}
+        className="absolute inset-0 bg-cover bg-center opacity-20 transition-smooth hero-bg-wave"
         style={{ backgroundImage: `url(${heroImage})` }}
       ></div>
       
