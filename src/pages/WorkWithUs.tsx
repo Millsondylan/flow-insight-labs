@@ -39,7 +39,7 @@ const WorkWithUs = () => {
                 <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Our Services</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-                Comprehensive Digital Solutions
+                Complete Digital Solutions
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Choose the service that best fits your needs. Each service has its own dedicated page with detailed information and specialized forms.
@@ -63,7 +63,7 @@ const WorkWithUs = () => {
                     Website Development
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    Custom websites built with cutting-edge technology. Responsive, fast, and optimized for conversions and user experience.
+                    Custom websites built with modern technology. Fast, responsive, and designed to turn visitors into customers.
                   </p>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ const WorkWithUs = () => {
                     Custom App Development
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    Transform your innovative ideas into powerful applications. We collaborate with you to bring your vision to life.
+                    Turn your ideas into working applications. We work with you to build exactly what you need.
                   </p>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
@@ -173,7 +173,7 @@ const WorkWithUs = () => {
                   Ready to Transform Your Business?
                 </h3>
                 <p className="text-lg text-muted-foreground">
-                  Choose the service that best fits your needs, or contact us to discuss a custom solution tailored to your specific requirements.
+                  Pick the service that fits your needs, or contact us to discuss a solution built just for you.
                 </p>
                 <Button
                   variant="outline"

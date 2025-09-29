@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Brain } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
@@ -14,6 +13,7 @@ const Navigation = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,16 +52,16 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-spring ${
-      scrolled 
-        ? 'bg-gradient-glass backdrop-blur-md shadow-glass border-b border-border/50' 
+      scrolled
+        ? 'bg-gradient-glass backdrop-blur-md shadow-glass border-b border-border/50'
         : 'bg-background/80 backdrop-blur-sm'
     }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 sm:h-18">
           {/* Enhanced Logo */}
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => navigate("/")}>
             <div className="p-2 bg-gradient-primary rounded-xl shadow-soft group-hover:shadow-glow transition-spring">
-              <img src="/favicon.svg" alt="Insight Flow AI" className="w-6 h-6 animate-glow" />
+              <img src="/favicon.svg" alt="Insight Flow AI" className="w-6 h-6" />
             </div>
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent group-hover:scale-105 transition-spring">
               Insight Flow AI
@@ -89,8 +89,9 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 hover:bg-muted/50 rounded-lg transition-smooth"
+            className="md:hidden p-3 hover:bg-muted/50 rounded-lg transition-smooth min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -98,13 +99,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-6 border-t border-border/30 bg-gradient-glass backdrop-blur-md animate-scale-in">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-4 border-t border-border/30 bg-gradient-glass backdrop-blur-md animate-scale-in">
+            <div className="flex flex-col space-y-2">
               {navItems.map((item, index) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-left text-foreground hover:text-primary transition-smooth font-medium py-2 px-4 hover:bg-muted/30 rounded-lg"
+                  className="text-left text-foreground hover:text-primary transition-smooth font-medium py-3 px-4 hover:bg-muted/30 rounded-lg min-h-[44px] flex items-center"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {item.label}

@@ -221,10 +221,9 @@ All colors MUST be HSL.
   }
 
   .hero-bg-wave {
-    animation: backgroundWave 12s ease-in-out infinite;
     filter: blur(0.3px) brightness(1.05) contrast(1.02);
     transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: filter;
+    will-change: transform;
   }
 
   .hero-bg-wave:hover {
@@ -251,6 +250,153 @@ All colors MUST be HSL.
       transparent 100%);
     animation: rippleWave 6s ease-in-out infinite;
     pointer-events: none;
+  }
+
+  /* Mobile-optimized touch targets and spacing */
+  @media (max-width: 768px) {
+    /* Mobile touch targets - minimum 44px */
+    .mobile-touch {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Mobile container padding */
+    .mobile-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Mobile text sizing */
+    .mobile-text-hero {
+      font-size: 2.25rem;
+      line-height: 1.1;
+    }
+
+    .mobile-text-subtitle {
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+
+    /* Mobile button stacking */
+    .mobile-button-stack {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    /* Mobile navigation improvements */
+    .mobile-nav-backdrop {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Mobile card optimizations */
+    .mobile-card {
+      margin-bottom: 1rem;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+    }
+
+    /* Mobile image scaling */
+    .mobile-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* Mobile reduced motion for performance */
+    .mobile-reduce-motion {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /* Mobile optimized floating elements */
+    .mobile-floating-reduced {
+      transform: none !important;
+      animation: none !important;
+    }
+
+    /* Mobile hero section improvements */
+    .hero-mobile-optimized {
+      min-height: 100vh;
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    /* Mobile hero title scaling */
+    .hero-title-mobile {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* Mobile hero subtitle scaling */
+    .hero-subtitle-mobile {
+      font-size: clamp(0.875rem, 4vw, 1.125rem);
+      line-height: 1.5;
+    }
+
+    /* Mobile section spacing */
+    .section-padding-mobile {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    /* Mobile card improvements */
+    .card-mobile-optimized {
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 0 1rem;
+    }
+  }
+
+  /* Small mobile devices (320px - 480px) */
+  @media (max-width: 480px) {
+    /* Extra small mobile hero adjustments */
+    .hero-title-xs {
+      font-size: clamp(1.75rem, 10vw, 2.5rem);
+    }
+
+    .hero-subtitle-xs {
+      font-size: clamp(0.875rem, 4vw, 1rem);
+    }
+
+    /* Extra small mobile spacing */
+    .spacing-xs-mobile {
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Navigation adjustments */
+    .nav-mobile-xs {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  /* Tablet specific optimizations */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .tablet-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tablet-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+
+  /* Landscape mobile optimizations */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .landscape-mobile-height {
+      min-height: 70vh;
+    }
+
+    .landscape-mobile-text {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -362,5 +508,134 @@ All colors MUST be HSL.
   100% {
     transform: scale(1) rotate(360deg);
     opacity: 0.3;
+  }
+}
+
+/* Prevent empty screens - ensure critical content is always visible */
+.hero-title,
+.hero-subtitle,
+.hero-buttons {
+  min-height: 1px; /* Prevent collapse */
+}
+
+/* Fallback visibility for critical elements */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .hero-subtitle,
+  .hero-buttons,
+  .nav-logo,
+  .nav-desktop-menu,
+  .nav-mobile-toggle {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Removed conflicting CSS animations to prevent glitches with GSAP */
+
+/* Disable CSS animations on GSAP-controlled elements */
+.hero-title,
+.hero-subtitle,
+.hero-buttons .btn,
+.hero-float,
+.scroll-indicator,
+[data-gsap] {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Optimize button interactions to prevent jumpiness */
+button, .btn {
+  will-change: auto; /* Prevent unnecessary compositing layers */
+  transform: translateZ(0); /* Create compositing layer only for buttons */
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  user-select: none; /* Prevent text selection on button press */
+  touch-action: manipulation; /* Optimize touch interactions */
+}
+
+/* Smooth button transitions without interfering with GSAP */
+button:not(.hero-buttons .btn), .btn:not(.hero-buttons .btn) {
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out !important;
+}
+
+/* Button press states for immediate feedback */
+button:active, .btn:active {
+  transform: translateZ(0) scale(0.98) !important;
+}
+
+/* Prevent layout shifts during animations */
+.hero-buttons {
+  min-height: 44px; /* Ensure consistent button container height */
+}
+
+/* Prevent AOS-related page jumping */
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Ensure stable layout before animations load */
+.aos-init {
+  opacity: 1;
+}
+
+/* Prevent cumulative layout shift (CLS) */
+.container, main, section {
+  contain: layout style;
+}
+
+/* Stable page dimensions */
+main {
+  min-height: calc(100vh - 4rem); /* Account for header height */
+}
+
+/* Prevent page jumping on route changes */
+body {
+  overflow-x: hidden;
+}
+
+.hero-buttons .btn {
+  min-height: 44px; /* Prevent height changes */
+  will-change: opacity; /* Only animate opacity, not transform after initial load */
+}
+
+/* Performance optimizations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .wave-float,
+  .wave-float-delay-1,
+  .wave-float-delay-2,
+  .wave-float-delay-3,
+  .wave-scroll,
+  .wave-scroll-reverse,
+  .background-wave,
+  .wave-distortion,
+  .hero-bg-wave {
+    animation: none !important;
+  }
+}
+
+/* Optimize all animated elements */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Performance optimizations for scroll */
+body {
+  overflow-x: hidden;
+}
+
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

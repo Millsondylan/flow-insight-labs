@@ -1,10 +1,22 @@
 import { Brain, Mail, Lightbulb } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import useScrollAnimations from "@/hooks/useScrollAnimations";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
   const location = useLocation();
+  const { fadeUpAnimation, staggerAnimation } = useScrollAnimations();
+
+  useEffect(() => {
+    // Initialize footer animations
+    setTimeout(() => {
+      fadeUpAnimation('.footer-brand', { start: "top 90%" });
+      staggerAnimation('.footer-section', { start: "top 85%" });
+      fadeUpAnimation('.footer-bottom', { start: "top 85%" });
+    }, 100);
+  }, [fadeUpAnimation, staggerAnimation]);
 
   const handleNavigation = (href: string) => {
     if (href.startsWith("mailto:")) {
@@ -45,7 +57,6 @@ const Footer = () => {
     {
       title: "Support",
       links: [
-        { label: "Contact Support", href: "mailto:Support@insight-flowai.com" },
         { label: "Contact Us", href: "/contact" },
         { label: "FAQ", href: "/faq" },
       ]
@@ -54,11 +65,11 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-subtle text-foreground">
-      <div className="container mx-auto px-4 py-4">
-        <div className="grid md:grid-cols-3 gap-6 mb-3">
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
           {/* Brand Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="footer-brand col-span-1 sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-gradient-primary rounded-lg">
                 <img src="/favicon.svg" alt="Insight Flow AI" className="w-5 h-5" />
               </div>
@@ -66,21 +77,21 @@ const Footer = () => {
                 Insight Flow AI
               </span>
             </div>
-            <p className="text-muted-foreground/80 text-sm leading-relaxed mb-3">
-              Transforming data into profitable actions with cutting-edge AI solutions.
+            <p className="text-muted-foreground/80 text-sm leading-relaxed mb-4">
+              Turning data into smart business decisions with AI that works.
             </p>
           </div>
 
           {/* Footer Sections */}
           {footerSections.map((section) => (
-            <div key={section.title}>
+            <div key={section.title} className="footer-section">
               <h3 className="font-semibold text-foreground mb-2 text-sm">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <button
                       onClick={() => handleNavigation(link.href)}
-                      className="text-muted-foreground/80 hover:text-foreground transition-smooth text-left text-sm"
+                      className="text-muted-foreground/80 hover:text-foreground transition-smooth text-left text-sm py-1 min-h-[32px] flex items-center"
                     >
                       {link.label}
                     </button>
@@ -92,16 +103,22 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border/30 pt-3">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-            <p className="text-muted-foreground/80 text-xs">
+        <div className="footer-bottom border-t border-border/30 pt-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-muted-foreground/80 text-xs text-center sm:text-left">
               © {currentYear} Insight Flow AI. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-xs">
-              <button onClick={() => handleNavigation("/privacy")} className="text-muted-foreground/80 hover:text-foreground transition-smooth">
+              <button
+                onClick={() => handleNavigation("/privacy")}
+                className="text-muted-foreground/80 hover:text-foreground transition-smooth py-2 px-1 min-h-[32px] flex items-center"
+              >
                 Privacy Policy
               </button>
-              <button onClick={() => handleNavigation("mailto:Support@insight-flowai.com")} className="text-muted-foreground/80 hover:text-foreground transition-smooth">
+              <button
+                onClick={() => handleNavigation("mailto:Support@insight-flowai.com")}
+                className="text-muted-foreground/80 hover:text-foreground transition-smooth py-2 px-1 min-h-[32px] flex items-center"
+              >
                 Support
               </button>
             </div>
