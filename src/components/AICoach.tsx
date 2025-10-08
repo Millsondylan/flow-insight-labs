@@ -2,13 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Target, Zap, Users, BarChart3, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import useScrollAnimations from "@/hooks/useScrollAnimations";
 
 const AICoach = () => {
-  const location = useLocation();
-  const isStandalonePage = location.pathname === '/ai-coach';
-
   const {
     fadeUpAnimation,
     slideInFromLeft,
@@ -20,54 +16,28 @@ const AICoach = () => {
   } = useScrollAnimations();
 
   useEffect(() => {
-    if (isStandalonePage) {
-      // On standalone page, show content immediately without scroll animations
-      setTimeout(() => {
-        const elements = [
-          '.aicoach-badge',
-          '.aicoach-title',
-          '.aicoach-description',
-          '.aicoach-feature',
-          '.aicoach-benefits',
-          '.aicoach-usecase',
-          '.aicoach-cta > *'
-        ];
+    // Section badge
+    fadeInScale('.aicoach-badge', { start: "top 90%" });
 
-        elements.forEach(selector => {
-          const els = document.querySelectorAll(selector);
-          els.forEach(el => {
-            (el as HTMLElement).style.opacity = '1';
-            (el as HTMLElement).style.transform = 'none';
-          });
-        });
-      }, 50);
-    } else {
-      // On home page, use scroll reveal animations
-      setTimeout(() => {
-        // Section badge
-        fadeInScale('.aicoach-badge', { start: "top 90%" });
+    // Title clip reveal
+    textClipReveal('.aicoach-title', { start: "top 85%" });
 
-        // Title clip reveal
-        textClipReveal('.aicoach-title', { start: "top 85%" });
+    // Description blur reveal
+    revealBlurAnimation('.aicoach-description', { start: "top 80%" });
 
-        // Description blur reveal
-        revealBlurAnimation('.aicoach-description', { start: "top 80%" });
+    // Feature cards slide in from alternating sides
+    slideInFromLeft('.aicoach-feature:nth-child(odd)', { start: "top 80%" });
+    slideInFromRight('.aicoach-feature:nth-child(even)', { start: "top 80%" });
 
-        // Feature cards slide in from alternating sides
-        slideInFromLeft('.aicoach-feature:nth-child(odd)', { start: "top 80%" });
-        slideInFromRight('.aicoach-feature:nth-child(even)', { start: "top 80%" });
+    // Benefits section
+    slideInFromRight('.aicoach-benefits', { start: "top 75%" });
 
-        // Benefits section
-        slideInFromRight('.aicoach-benefits', { start: "top 75%" });
+    // Use case section
+    fadeInScale('.aicoach-usecase', { start: "top 75%" });
 
-        // Use case section
-        fadeInScale('.aicoach-usecase', { start: "top 75%" });
-
-        // CTA section
-        modernStaggerReveal('.aicoach-cta > *', { start: "top 80%" });
-      }, 100);
-    }
-  }, [isStandalonePage, fadeUpAnimation, slideInFromLeft, slideInFromRight, modernStaggerReveal, fadeInScale, textClipReveal, revealBlurAnimation]);
+    // CTA section
+    modernStaggerReveal('.aicoach-cta > *', { start: "top 80%" });
+  }, [fadeUpAnimation, slideInFromLeft, slideInFromRight, modernStaggerReveal, fadeInScale, textClipReveal, revealBlurAnimation]);
 
   const benefits = [
     "Peak demand prediction for optimal business timing",
