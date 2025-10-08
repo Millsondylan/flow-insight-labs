@@ -400,6 +400,25 @@ All colors MUST be HSL.
   }
 }
 
+  /* Disable CSS animations on non-home pages */
+  body.disable-css-animations {
+    .wave-float,
+    .wave-float-delay-1,
+    .wave-float-delay-2,
+    .wave-float-delay-3,
+    .wave-scroll,
+    .wave-scroll-reverse,
+    .background-wave,
+    .wave-distortion {
+      animation: none !important;
+    }
+
+    .shimmer-wave::before,
+    .wave-ripple::before {
+      animation: none !important;
+    }
+  }
+
 @keyframes waveFloat {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);

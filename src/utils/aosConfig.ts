@@ -23,3 +23,23 @@ export const initAOS = () => {
     console.log('AOS failed to load, continuing without animations');
   });
 };
+
+// Function to disable AOS animations
+export const disableAOS = () => {
+  import('aos').then(AOS => {
+    AOS.default.init({
+      disable: true, // Disable all animations
+    });
+    AOS.default.refresh();
+  });
+};
+
+// Function to enable AOS animations
+export const enableAOS = () => {
+  import('aos').then(AOS => {
+    AOS.default.init({
+      disable: 'mobile', // Re-enable with original settings
+    });
+    AOS.default.refresh();
+  });
+};

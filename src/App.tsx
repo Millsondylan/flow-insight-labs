@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import Analytics from "./components/Analytics";
@@ -17,6 +18,7 @@ import AppDevelopmentPage from "./pages/AppDevelopmentPage";
 import ConsultationPage from "./pages/ConsultationPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import { AnimationProvider } from "./contexts/AnimationContext";
 
 const queryClient = new QueryClient();
 
@@ -33,21 +35,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <ScrollToTop />
-            <Analytics />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/work-with-us" element={<WorkWithUs />} />
-              <Route path="/ai-coach" element={<AICoachPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-              <Route path="/website-development" element={<WebsiteDevelopmentPage />} />
-              <Route path="/app-development" element={<AppDevelopmentPage />} />
-              <Route path="/consultation" element={<ConsultationPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AppContent />
           </BrowserRouter>
         </TooltipProvider>
       </ThemeProvider>
@@ -55,4 +43,41 @@ const App = () => (
   </ErrorBoundary>
 );
 
-export default App;
+const AppContent = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  const animationsEnabled = isHomePage;
+  const rootClassName = isHomePage ? undefined : "disable-css-animations";
+
+  useEffect(() => {
+    if (rootClassName) {
+      document.body.classList.add(rootClassName);
+    } else {
+      document.body.classList.remove("disable-css-animations");
+    }
+    return () => {
+      document.body.classList.remove("disable-css-animations");
+    };
+  }, [rootClassName]);
+
+  return (
+    <AnimationProvider enabled={animationsEnabled} rootClassName={rootClassName}>
+      <ScrollToTop />
+      <Analytics />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/work-with-us" element={<WorkWithUs />} />
+        <Route path="/ai-coach" element={<AICoachPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/website-development" element={<WebsiteDevelopmentPage />} />
+        <Route path="/app-development" element={<AppDevelopmentPage />} />
+        <Route path="/consultation" element={<ConsultationPage />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimationProvider>
+  );
+};export default App;

@@ -5,21 +5,42 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageCircle, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+import { AnimationProvider } from "@/contexts/AnimationContext";
+
+
+
 const ContactPage = () => {
+
   const navigate = useNavigate();
 
 
+
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
 
-      <main id="contact" className="pt-20">
-        <Contact />
-      </main>
+    <AnimationProvider enabled={false}>
 
-      <Footer />
-    </div>
+      <div className="min-h-screen bg-background">
+
+        <Navigation />
+
+
+
+        <main id="contact" className="pt-20">
+
+          <Contact />
+
+        </main>
+
+
+
+        <Footer />
+
+      </div>
+
+    </AnimationProvider>
+
   );
+
 };
 
 export default ContactPage;
