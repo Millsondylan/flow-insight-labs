@@ -4,32 +4,26 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, HelpCircle, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { disableAOS } from "@/utils/aosConfig";
 import { useEffect } from "react";
+
+import { AnimationProvider } from "@/contexts/AnimationContext";
 
 const FAQPage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    import('aos').then(AOS => {
-      AOS.default.init({
-        duration: 1200,
-        once: true,
-        offset: 100,
-        easing: 'ease-out-cubic'
-      });
-    });
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <AnimationProvider enabled={false}>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
-      <main id="faq" className="pt-20">
-        <FAQ />
-      </main>
+        <main id="faq" className="pt-20">
+          <FAQ />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </AnimationProvider>
   );
 };
 

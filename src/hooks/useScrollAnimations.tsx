@@ -32,7 +32,10 @@ interface ScrollAnimationOptions {
   markers?: boolean;
 }
 
+import { useAnimation } from '@/contexts/AnimationContext';
+
 export const useScrollAnimations = () => {
+  const { animationsEnabled } = useAnimation();
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
@@ -50,6 +53,7 @@ export const useScrollAnimations = () => {
 
   // Apple-style fade up animation
   const fadeUpAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1 });
       return;
@@ -82,6 +86,7 @@ export const useScrollAnimations = () => {
 
   // Stagger animation for multiple elements
   const staggerAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1 });
       return;
@@ -115,6 +120,7 @@ export const useScrollAnimations = () => {
 
   // Parallax scroll animation
   const parallaxAnimation = (selector: string, yPercent: number = -50, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.fromTo(
       selector,
       { yPercent: 0, force3D: true },
@@ -136,6 +142,7 @@ export const useScrollAnimations = () => {
 
   // Scale on scroll animation
   const scaleAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, scale: 1 });
       return;
@@ -171,6 +178,7 @@ export const useScrollAnimations = () => {
 
   // Slide in from left animation
   const slideInLeftAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.fromTo(
       selector,
       {
@@ -194,6 +202,7 @@ export const useScrollAnimations = () => {
 
   // Slide in from right animation
   const slideInRightAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.fromTo(
       selector,
       {
@@ -217,6 +226,7 @@ export const useScrollAnimations = () => {
 
   // Text reveal animation (like Apple)
   const textRevealAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.fromTo(
       selector,
       {
@@ -240,6 +250,7 @@ export const useScrollAnimations = () => {
 
   // Enhanced card flip animation
   const cardFlipAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.fromTo(
       selector,
       {
@@ -265,6 +276,7 @@ export const useScrollAnimations = () => {
 
   // Magnetic hover effect
   const magneticAnimation = (selector: string) => {
+    if (!animationsEnabled) return;
     const elements = document.querySelectorAll(selector);
     elements.forEach((element) => {
       const el = element as HTMLElement;
@@ -311,6 +323,7 @@ export const useScrollAnimations = () => {
 
   // Reveal animation with blur effect
   const revealBlurAnimation = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, y: 0, filter: "blur(0px)" });
       return;
@@ -341,6 +354,7 @@ export const useScrollAnimations = () => {
 
   // Advanced slide in from directions (like Apple/Webflow sites)
   const slideInFromLeft = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, x: 0 });
       return;
@@ -371,6 +385,7 @@ export const useScrollAnimations = () => {
   };
 
   const slideInFromRight = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, x: 0 });
       return;
@@ -402,6 +417,7 @@ export const useScrollAnimations = () => {
 
   // Modern stagger reveal (like Apple Watch product pages)
   const modernStaggerReveal = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, scale: 1, y: 0 });
       return;
@@ -436,6 +452,7 @@ export const useScrollAnimations = () => {
 
   // Fade in with scale (Apple-style)
   const fadeInScale = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { opacity: 1, scale: 1 });
       return;
@@ -467,6 +484,7 @@ export const useScrollAnimations = () => {
 
   // Text reveal with clip-path (modern effect)
   const textClipReveal = (selector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     if (prefersReducedMotion()) {
       gsap.set(selector, { clipPath: "inset(0% 0 0 0)", y: 0 });
       return;
@@ -496,6 +514,7 @@ export const useScrollAnimations = () => {
 
   // Pin and transform animation
   const pinAnimation = (selector: string, transformSelector: string, options: Partial<ScrollAnimationOptions> = {}) => {
+    if (!animationsEnabled) return;
     gsap.timeline({
       scrollTrigger: {
         trigger: selector,

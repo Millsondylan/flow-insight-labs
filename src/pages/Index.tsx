@@ -5,18 +5,22 @@ import AICoach from "@/components/AICoach";
 import OurApps from "@/components/OurApps";
 import Footer from "@/components/Footer";
 
+import { AnimationProvider } from "@/contexts/AnimationContext";
+
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <main>
-        <Hero />
-        <OurMission />
-        <AICoach />
-        <OurApps />
-      </main>
-      <Footer />
-    </div>
+    <AnimationProvider enabled={true}>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main>
+          <Hero />
+          <OurMission />
+          <AICoach />
+          <OurApps />
+        </main>
+        <Footer />
+      </div>
+    </AnimationProvider>
   );
 };
 
