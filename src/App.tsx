@@ -80,4 +80,6 @@ const AppContent = () => {
       </Routes>
     </AnimationProvider>
   );
-};export default App;
+};
+
+export default App;
