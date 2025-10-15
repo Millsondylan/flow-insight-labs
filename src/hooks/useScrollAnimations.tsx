@@ -281,23 +281,25 @@ export const useScrollAnimations = () => {
     elements.forEach((element) => {
       const el = element as HTMLElement;
 
-      el.addEventListener('mouseenter', () => {
+      // Ensure pointer events are enabled for proper click handling
+      el.style.pointerEvents = 'auto';
+      
+      // Set will-change for better performance
+      el.style.willChange = 'transform';
+
+      const handleMouseEnter = () => {
         gsap.to(el, {
           scale: 1.05,
           duration: 0.3,
-          ease: "power2.out"
+          ease: "power2.out",
+          force3D: true,
+          // Ensure transforms don't block pointer events
+          pointerEvents: 'auto'
         });
-      });
+      };
 
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-
-      el.addEventListener('mousemove', (e) => {
+      const handleMouseMove = (e: MouseEvent) => {
+        // Prevent interference with click events by using passive listeners
         const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
@@ -306,18 +308,44 @@ export const useScrollAnimations = () => {
           x: x * 0.1,
           y: y * 0.1,
           duration: 0.3,
-          ease: "power2.out"
+          ease: "power2.out",
+          force3D: true,
+          // Maintain pointer events during animation
+          pointerEvents: 'auto'
         });
-      });
+      };
 
-      el.addEventListener('mouseleave', () => {
+      const handleMouseLeave = () => {
         gsap.to(el, {
           x: 0,
           y: 0,
+          scale: 1,
           duration: 0.5,
-          ease: "power2.out"
+          ease: "power2.out",
+          force3D: true,
+          // Reset pointer events
+          pointerEvents: 'auto',
+          onComplete: () => {
+            // Clean up will-change after animation
+            el.style.willChange = 'auto';
+          }
         });
-      });
+      };
+
+      // Add event listeners with proper options for click compatibility
+      el.addEventListener('mouseenter', handleMouseEnter, { passive: true });
+      el.addEventListener('mousemove', handleMouseMove, { passive: true });
+      el.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+
+      // Store cleanup function for potential future removal
+      (el as any)._magneticCleanup = () => {
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mousemove', handleMouseMove);
+        el.removeEventListener('mouseleave', handleMouseLeave);
+        el.style.willChange = 'auto';
+        el.style.pointerEvents = '';
+        gsap.set(el, { clearProps: 'all' });
+      };
     });
   };
 

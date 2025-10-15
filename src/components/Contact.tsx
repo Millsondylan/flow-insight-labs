@@ -73,7 +73,15 @@ const Contact = () => {
               <Button 
                 variant="premium" 
                 className="group/btn w-full shadow-soft hover:shadow-glow transition-spring relative overflow-hidden"
-                onClick={() => window.open('https://wa.me/27674420379', '_blank')}
+                onClick={(e) => {
+                  console.log('WhatsApp button clicked!', e);
+                  try {
+                    window.open('https://wa.me/27674420379', '_blank');
+                  } catch (error) {
+                    console.error('WhatsApp button error:', error);
+                    alert('Unable to open WhatsApp. Please visit https://wa.me/27674420379 manually.');
+                  }
+                }}
               >
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 group-hover/btn:scale-110 transition-spring" />
