@@ -27,27 +27,121 @@ const Navigation = () => {
   ];
 
   const handleNavigation = (href: string) => {
-    if (href.startsWith("/#")) {
-      // Navigate to home page and scroll to section
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => {
-          const element = document.querySelector(href.substring(1));
-          element?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+    console.log('[Navigation] handleNavigation called with href:', href);
+    console.log('[Navigation] Current location:', location.pathname);
+    console.log('[Navigation] Navigate function:', typeof navigate);
+
+    try {
+      if (href.startsWith("/#")) {
+        console.log('[Navigation] Handling anchor link to home page:', href);
+        // Navigate to home page and scroll to section
+        if (location.pathname !== "/") {
+          console.log('[Navigation] Not on home page, navigating to home first');
+          try {
+            navigate("/");
+            console.log('[Navigation] Navigation to home successful, setting timeout for scroll');
+            setTimeout(() => {
+              try {
+                const sectionId = href.substring(1); // Remove the '#'
+                console.log('[Navigation] Looking for element with selector:', sectionId);
+                const element = document.querySelector(sectionId);
+                if (element) {
+                  console.log('[Navigation] Element found, scrolling into view');
+                  element.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  console.warn('[Navigation] Element not found for selector:', sectionId);
+                }
+              } catch (scrollError) {
+                console.error('[Navigation] Error during delayed scroll:', scrollError);
+              }
+            }, 100);
+          } catch (navError) {
+            console.error('[Navigation] Error navigating to home page:', navError);
+            // Fallback: try direct window location change
+            try {
+              console.log('[Navigation] Fallback: using window.location.href');
+              window.location.href = href;
+            } catch (fallbackError) {
+              console.error('[Navigation] Fallback navigation failed:', fallbackError);
+            }
+          }
+        } else {
+          console.log('[Navigation] Already on home page, scrolling to section');
+          try {
+            const sectionId = href.substring(1); // Remove the '#'
+            console.log('[Navigation] Looking for element with selector:', sectionId);
+            const element = document.querySelector(sectionId);
+            if (element) {
+              console.log('[Navigation] Element found, scrolling into view');
+              element.scrollIntoView({ behavior: "smooth" });
+            } else {
+              console.warn('[Navigation] Element not found for selector:', sectionId);
+            }
+          } catch (scrollError) {
+            console.error('[Navigation] Error scrolling to section:', scrollError);
+          }
+        }
+      } else if (href.startsWith("#")) {
+        console.log('[Navigation] Handling anchor link on current page:', href);
+        try {
+          console.log('[Navigation] Looking for element with selector:', href);
+          const element = document.querySelector(href);
+          if (element) {
+            console.log('[Navigation] Element found, scrolling into view');
+            element.scrollIntoView({ behavior: "smooth" });
+          } else {
+            console.warn('[Navigation] Element not found for selector:', href);
+          }
+        } catch (scrollError) {
+          console.error('[Navigation] Error scrolling to anchor:', scrollError);
+        }
       } else {
-        const element = document.querySelector(href.substring(1));
-        element?.scrollIntoView({ behavior: "smooth" });
+        console.log('[Navigation] Handling regular page navigation:', href);
+        try {
+          // Navigate to page and scroll to top
+          navigate(href);
+          console.log('[Navigation] Navigation successful, scrolling to top');
+          window.scrollTo(0, 0);
+        } catch (navError) {
+          console.error('[Navigation] Error during page navigation:', navError);
+          // Fallback: try direct window location change
+          try {
+            console.log('[Navigation] Fallback: using window.location.href');
+            window.location.href = href;
+          } catch (fallbackError) {
+            console.error('[Navigation] Fallback navigation failed:', fallbackError);
+          }
+        }
       }
-    } else if (href.startsWith("#")) {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      // Navigate to page and scroll to top
-      navigate(href);
-      window.scrollTo(0, 0);
+      
+      console.log('[Navigation] Closing mobile menu');
+      setIsOpen(false);
+    } catch (error) {
+      console.error('[Navigation] Unexpected error in handleNavigation:', error);
+      console.log('[Navigation] Attempting emergency fallback navigation');
+      
+      // Emergency fallback - try basic navigation
+      try {
+        if (href.startsWith("#") || href.startsWith("/#")) {
+          console.log('[Navigation] Emergency: treating as anchor, trying window.location.hash');
+          window.location.hash = href.replace("/", "");
+        } else {
+          console.log('[Navigation] Emergency: using window.location.href');
+          window.location.href = href;
+        }
+      } catch (emergencyError) {
+        console.error('[Navigation] Emergency fallback failed:', emergencyError);
+        // Last resort - show user feedback
+        alert(`Navigation failed. Please manually navigate to: ${href}`);
+      }
+      
+      // Always try to close the menu even if navigation fails
+      try {
+        setIsOpen(false);
+      } catch (menuError) {
+        console.error('[Navigation] Error closing menu:', menuError);
+      }
     }
-    setIsOpen(false);
   };
 
   return (

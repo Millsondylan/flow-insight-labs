@@ -588,12 +588,17 @@ button:active, .btn:active {
   min-height: 44px; /* Ensure consistent button container height */
 }
 
-/* Prevent AOS-related page jumping */
-[data-aos] {
+/* Prevent AOS-related page jumping - Fixed to allow button clicks */
+[data-aos]:not(.aos-animate) {
   pointer-events: none;
 }
-[data-aos].aos-animate {
+[data-aos].aos-animate, button, .btn, a {
   pointer-events: auto;
+}
+
+/* Ensure all interactive elements always work */
+button, .btn, [role="button"], input, textarea, select, a, [tabindex] {
+  pointer-events: auto !important;
 }
 
 /* Ensure stable layout before animations load */

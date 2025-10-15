@@ -25,24 +25,81 @@ const SuggestApp = () => {
     industry: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submission started');
+    console.log('Form data:', formData);
     
-    // Validate required fields
-    if (!formData.name.trim() || !formData.email.trim() || !formData.appIdea.trim()) {
-      alert('Please fill in all required fields.');
-      return;
+    // Clear previous errors and success states
+    setSubmitError(null);
+    setSubmitSuccess(false);
+    setIsSubmitting(true);
+    
+    try {
+      console.log('Starting form validation...');
+      
+      // Validate required fields
+      if (!formData.name.trim() || !formData.email.trim() || !formData.appIdea.trim()) {
+        const errorMessage = 'Please fill in all required fields.';
+        console.error('Validation failed:', errorMessage);
+        setSubmitError(errorMessage);
+        return;
+      }
+      
+      console.log('Required fields validation passed');
+      
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        const errorMessage = 'Please enter a valid email address.';
+        console.error('Email validation failed:', errorMessage);
+        setSubmitError(errorMessage);
+        return;
+      }
+      
+      console.log('Email validation passed');
+      
+      // Prepare email content
+      const emailBody = `Name: ${formData.name}%0AEmail: ${formData.email}%0AIndustry: ${formData.industry}%0A%0AApp Idea:%0A${encodeURIComponent(formData.appIdea)}`;
+      const emailSubject = `New App Suggestion from ${formData.name}`;
+      const emailUrl = `mailto:Support@insight-flowai.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+      
+      console.log('Email URL prepared:', emailUrl);
+      
+      // Try to open email client
+      console.log('Attempting to open email client...');
+      window.location.href = emailUrl;
+      
+      // Set success state
+      console.log('Email client opened successfully');
+      setSubmitSuccess(true);
+      
+      // Optional: Clear form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          appIdea: "",
+          industry: ""
+        });
+        setSubmitSuccess(false);
+        console.log('Form cleared after successful submission');
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      const errorMessage = error instanceof Error 
+        ? `Submission failed: ${error.message}` 
+        : 'An unexpected error occurred. Please try again.';
+      setSubmitError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+      console.log('Form submission process completed');
     }
-    
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-    
-    const emailBody = `Name: ${formData.name}%0AEmail: ${formData.email}%0AIndustry: ${formData.industry}%0A%0AApp Idea:%0A${encodeURIComponent(formData.appIdea)}`;
-    window.location.href = `mailto:Support@insight-flowai.com?subject=New App Suggestion from ${formData.name}&body=${emailBody}`;
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -166,6 +223,24 @@ const SuggestApp = () => {
                   />
                 </div>
 
+                {/* Error Message */}
+                {submitError && (
+                  <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-lg flex items-center gap-2">
+                    <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    <span>{submitError}</span>
+                  </div>
+                )}
+
+                {/* Success Message */}
+                {submitSuccess && (
+                  <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                    <span>Your app suggestion has been sent successfully! We'll review it within 48 hours.</span>
+                  </div>
+                )}
+
                 {/* Process Steps */}
                 <div className="bg-gradient-glass backdrop-blur-sm p-8 rounded-2xl border border-border/30">
                   <h4 className="text-2xl font-bold mb-8 text-center">What happens next?</h4>
@@ -201,12 +276,21 @@ const SuggestApp = () => {
                     type="submit" 
                     variant="premium" 
                     size="xl" 
-                    className="group w-full sm:w-auto shadow-floating hover:shadow-glow transition-spring relative overflow-hidden"
+                    disabled={isSubmitting}
+                    className="group w-full sm:w-auto shadow-floating hover:shadow-glow transition-spring relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="flex items-center gap-3">
-                      <Send className="w-6 h-6 group-hover:scale-110 transition-spring" />
-                      <span className="text-lg">Submit Your Idea</span>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-spring" />
+                      {isSubmitting ? (
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <Send className="w-6 h-6 group-hover:scale-110 transition-spring" />
+                      )}
+                      <span className="text-lg">
+                        {isSubmitting ? 'Submitting...' : 'Submit Your Idea'}
+                      </span>
+                      {!isSubmitting && (
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-spring" />
+                      )}
                     </div>
                     <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-smooth"></div>
                   </Button>

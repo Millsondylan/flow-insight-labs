@@ -285,9 +285,15 @@ const Hero = () => {
               variant="soft"
               size="xl"
               className="btn w-full sm:w-auto group relative overflow-hidden shadow-floating hover:shadow-glow transition-all duration-500 ease-out min-h-[44px] px-6 py-3"
-              onClick={() => {
-                trackButtonClick('Contact Us Today', 'hero');
-                navigate('/contact');
+              onClick={(e) => {
+                console.log('Contact button clicked!', e);
+                try {
+                  trackButtonClick('Contact Us Today', 'hero');
+                  navigate('/contact');
+                } catch (error) {
+                  console.error('Error handling contact button click:', error);
+                  navigate('/contact'); // Still navigate even if tracking fails
+                }
               }}
             >
               <span className="relative z-10">Contact Us Today</span>
@@ -298,9 +304,15 @@ const Hero = () => {
               variant="outline"
               size="xl"
               className="btn w-full sm:w-auto group border-2 border-muted-foreground/20 hover:border-primary/50 transition-all duration-500 ease-out bg-glass backdrop-blur-sm min-h-[44px] px-6 py-3"
-              onClick={() => {
-                trackButtonClick('Work With Us', 'hero');
-                navigate('/work-with-us');
+              onClick={(e) => {
+                console.log('Work With Us button clicked!', e);
+                try {
+                  trackButtonClick('Work With Us', 'hero');
+                  navigate('/work-with-us');
+                } catch (error) {
+                  console.error('Error handling work with us button click:', error);
+                  navigate('/work-with-us'); // Still navigate even if tracking fails
+                }
               }}
             >
               Work With Us
